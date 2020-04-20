@@ -4,6 +4,8 @@
 import numpy as np
 import lib.modelMCMC as mMCMC
 from progress.bar import Bar
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QProgressDialog
 
 def unmixPixel(imagePixel, chainLength):
     # reminder : #import pdb; pdb.set_trace() in debug mode !
@@ -39,6 +41,10 @@ def unmixPixel(imagePixel, chainLength):
     sampleDelta = mMCMC.GibbsForHyperparameter()
 
     bar = Bar('Processing', max=chainLength)
+    app = QtWidgets.QApplication.instance()
+    if app != None:
+        progress = QProgressDialog("Unmixing...", "Abort", 0, chainLength)
+        progress.setModal(True)
     for m_compt in list(range(chainLength)):
         #for loop
 
@@ -65,9 +71,16 @@ def unmixPixel(imagePixel, chainLength):
         delta = sampleDelta.generateSamples(sigma2rSamples)
 
         bar.next()
+        if app != None:
+            progress.setValue(m_compt)
+            if progress.wasCanceled():
+                break
 
     #end of loop
     bar.finish()
+    if app != None:
+        progress.setValue(chainLength)
+        
     return TAlphaPlus, TSigma2r
 
 

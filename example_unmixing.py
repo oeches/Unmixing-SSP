@@ -23,7 +23,7 @@ def main():
     #NoiseVariance
     sigNoise = 0.001
 
-    myPixelSynth.generateSynthPixel(NumEnd, SamplingStep, sigNoise)
+    myPixelSynth.generateSynthPixel_old(NumEnd, SamplingStep, sigNoise)
 
     print("Bands number : {}".format(myPixelSynth.getBandsNumber()))
     print("Number of Endmembers : {}, Abundances : {}".format(myPixelSynth.EndmembersNumber, myPixelSynth.Abundances))
@@ -31,9 +31,19 @@ def main():
     print("Shape of endmember matrix : {}".format(np.shape(myPixelSynth.EndmembersMatrix)))
 
 	# check if sum equal to 1
+    ind = 0
     sumRes = np.sum(myPixelSynth.Abundances)
-    if sumRes != 1:
-        raise Exception("Problem with generated abundances : sum equal to {}".format(sumRes))
+    while sumRes != 1:
+        print("Problem with generated abundances : sum equal to {}, adjusting...".format(sumRes))
+        epsilon = sumRes - 1
+        if epsilon > 0:
+            myPixelSynth.Abundances[NumEnd-1] = myPixelSynth.Abundances[NumEnd-1] - epsilon
+        else:
+            myPixelSynth.Abundances[NumEnd-1] = myPixelSynth.Abundances[NumEnd-1] + epsilon
+        sumRes = np.sum(myPixelSynth.Abundances)
+        ind += 1
+        if ind > 10:
+            break #avoiding infinite loop
 
     #unmix single pixel
     Nmc = 5000
@@ -46,8 +56,11 @@ def main():
     myHistogramVar = mG.HistogramSamples(2,50)
     myHistogramAbund = mG.HistogramSamples(1,50)
     
-    myHistogramAbund.show(Nmc, Nbi, TAlphaPlus, "Abundances", NumEnd)
-    myHistogramVar.show(Nmc, Nbi, TSigma2r, "Variance", 1)
+    meanAbund, fighandleAbund = myHistogramAbund.compute(Nmc, Nbi, TAlphaPlus, "Abundances", NumEnd)
+    meanNoise, fighandleNoise = myHistogramVar.compute(Nmc, Nbi, TSigma2r, "Variance", 1)
+
+    fighandleAbund.show()
+    fighandleNoise.show()
 
     input()
 

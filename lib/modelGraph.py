@@ -42,12 +42,13 @@ class HistogramSamples(GraphBase):
         self.Nclass = Nclass
         self.fignumber = number
 
-    def show(self, Nmc, Nbi, Samples, name, sizeToDisplay):
+    def compute(self, Nmc, Nbi, Samples, name, sizeToDisplay):
         """Posterior distribution of the samples"""
         # Number of histograms to show depends of the sizeToDisplay
         #import pdb; pdb.set_trace()
         fighandle = plt.figure(self.fignumber)
         TSamplesR = Samples.getNSamples(Nmc-Nbi+1,Nbi)
+        meanOfSamples = np.zeros((sizeToDisplay,1))
         for indR in list(range(sizeToDisplay)):
             Tsamples = TSamplesR[indR, :]
             xmin = (0.8*np.amin(Tsamples))
@@ -60,21 +61,21 @@ class HistogramSamples(GraphBase):
                 else:
                     plt.subplot(1,3,indR+1)
             plt.plot(np.linspace(xmin,xmax,self.Nclass),hist_norm[0])
+            meanOfSamples[indR] = np.mean(Tsamples)
             if (sizeToDisplay > 1):
                 self.title = ["{}_{}".format(name, indR+1)]
                 #compute mean value
-                print("mean val_{} = {}".format(indR+1, np.mean(Tsamples)))
+                print("mean val_{} = {}".format(indR+1, meanOfSamples[indR]))
             else:
                 self.title = ["Posterior distribution of {}".format(name)]
                 #compute mean value
-                print("mean val = {}".format(np.mean(Tsamples)))
+                print("mean val = {}".format(meanOfSamples[indR]))
 
             plt.title(self.title)
             plt.xlabel(self.x_label)
             plt.ylabel(self.y_label)
 
-        #fighandle.draw()
-        fighandle.show()
+        return meanOfSamples, fighandle
 
 class AbundanceMaps():
     """Display of abundance maps obtained for a given image"""
