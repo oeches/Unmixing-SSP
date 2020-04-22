@@ -144,7 +144,8 @@ class MwG_abundances(MetropolisWithinGibbs):
             alpha = samplesAb.CurrentSamples[k] + np.sqrt(self.varRandomWalk[0,k])*np.random.randn()
 
             if (alpha > 0) and (alpha < (1 - np.sum(alpha_k))):
-                alpha_star = np.asscalar(alpha)
+                #alpha_star = np.asscalar(alpha) # deprecated
+                alpha_star = alpha.item()
                 
                 mu_alpha = spectra.dot(samplesAb.CurrentSamples)
                 C_alpha = samplesSig.CurrentSamples[:,0:(samplesAb.dimension-1)].dot(np.square(samplesAb.CurrentSamples[0:(samplesAb.dimension-1)])) \
@@ -209,7 +210,7 @@ class GibbsForHyperparameter(SamplerMCMC):
 
     def generateSamples(self, samplesSig):
         """Sampler (gibbs) of hyperparameter"""
-        sig2 = np.asscalar(samplesSig.CurrentSamples[:,0])
+        sig2 = samplesSig.CurrentSamples[:,0].item()
 
         delta = np.random.gamma(1, sig2)
 
