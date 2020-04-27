@@ -17,6 +17,7 @@ class Image:
         self.EndmembersMatrix = np.zeros((self.SpectralBands, self.EndmembersNumber))
         self.imageBands = np.zeros((self.DimensionX, self.DimensionY, self.SpectralBands))
         self.PixelValues = np.zeros((self.DimensionX * self.DimensionY, self.SpectralBands))
+        self.SpectralValues = np.zeros((1,1))
 
     def loadImage(self, filename):
         """Method that load the image stored in a NPY file"""
@@ -65,7 +66,7 @@ class Image:
 
     def extractPixel(self, index):
         """Method that return a given pixel from the current image"""
-        return self.PixelValues[:,index]
+        self.SpectralValues = self.PixelValues[:,index]
 
     def loadImageSpectra(self, filename):
         """Method that loads the endmembers of the current ROI from a npy file and fix their number"""
@@ -96,6 +97,7 @@ class Image:
 
         sizeofEndmembersMatrix = np.shape(self.EndmembersMatrix)
         self.EndmembersNumber = sizeofEndmembersMatrix[1]
+        return self.EndmembersNumber
 
 
 class PixelSynth:

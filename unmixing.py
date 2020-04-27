@@ -42,6 +42,7 @@ def unmixPixel(imagePixel, chainLength):
 
     bar = Bar('Processing', max=chainLength)
     app = QtWidgets.QApplication.instance()
+    boolAbort = False
     if app != None:
         progress = QProgressDialog("Unmixing...", "Abort", 0, chainLength)
         progress.setModal(True)
@@ -74,6 +75,7 @@ def unmixPixel(imagePixel, chainLength):
         if app != None:
             progress.setValue(m_compt)
             if progress.wasCanceled():
+                boolAbort = True
                 break
 
     #end of loop
@@ -81,7 +83,7 @@ def unmixPixel(imagePixel, chainLength):
     if app != None:
         progress.setValue(chainLength)
         
-    return TAlphaPlus, TSigma2r
+    return TAlphaPlus, TSigma2r, boolAbort
 
 
 

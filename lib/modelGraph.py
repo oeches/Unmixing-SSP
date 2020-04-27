@@ -88,13 +88,20 @@ class AbundanceMaps():
 
     def show(self, MeanAbund):
         """Display of maps"""
-        for indR in range(self.NumMaps):
+        for indR in list(range(self.NumMaps)):
             # reshaping data
             meanA = MeanAbund[indR, :]
             AlphaImage = np.reshape(meanA, (self.sizeY, self.sizeX))
-            AlphaImage = round(255*AlphaImage)
-            plt.figure(indR+1)
+            AlphaImage = np.round(255*AlphaImage)
+            #fig, ax = plt.subplots()
+            if (self.NumMaps > 1):
+                if (self.NumMaps > 3):
+                    plt.subplot(2,3,indR+1)
+                else:
+                    plt.subplot(1,3,indR+1)
             plt.imshow(AlphaImage, aspect = 'equal')
+
             title = ["Abundance of endmember {}".format(indR+1)]
-            plt.show()
+        
+        plt.show()
 
