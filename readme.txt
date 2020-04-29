@@ -45,6 +45,11 @@ at the beginning of the function. Up to 6 endmembers may be tested on a given pi
 The package required are given in the requirements.txt file.
 On UNIX systems, simply launch "python3 main.py" in the correct folder.
 
-The files come along with class and .npy files for the analysis of a real image.
+The files come along with class and .npy files for the analysis of a real image. You cand find them in the
+data folder. 
+Feel free to use these files as example : 
+- spectraSynth_dict.npy for the spectral library file for a synthetic pixel
+- imageROIMoffet.npy for the image file for unmixing of a real image
+- spectraMoffetROI_dict.npy for the spectral library file associated with the given image file
 
 If you have any question on the code : olivier.eches@gmail.com
