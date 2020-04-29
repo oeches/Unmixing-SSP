@@ -1,0 +1,116 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file '/home/olivier/C++Unmix/IHMUnmix/FenImageHyper.ui'
+#
+# Created by: PyQt5 UI code generator 5.12.3
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_FenImageHyper(object):
+    def setupUi(self, FenImageHyper):
+        FenImageHyper.setObjectName("FenImageHyper")
+        FenImageHyper.resize(542, 192)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(FenImageHyper)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setObjectName("gridLayout")
+        self.lineEditSpectralLib = QtWidgets.QLineEdit(FenImageHyper)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditSpectralLib.sizePolicy().hasHeightForWidth())
+        self.lineEditSpectralLib.setSizePolicy(sizePolicy)
+        self.lineEditSpectralLib.setObjectName("lineEditSpectralLib")
+        self.gridLayout.addWidget(self.lineEditSpectralLib, 3, 0, 1, 1)
+        self.lineEditImage = QtWidgets.QLineEdit(FenImageHyper)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.lineEditImage.sizePolicy().hasHeightForWidth())
+        self.lineEditImage.setSizePolicy(sizePolicy)
+        self.lineEditImage.setObjectName("lineEditImage")
+        self.gridLayout.addWidget(self.lineEditImage, 1, 0, 1, 1)
+        self.ButtonBrowseIm = QtWidgets.QPushButton(FenImageHyper)
+        self.ButtonBrowseIm.setObjectName("ButtonBrowseIm")
+        self.gridLayout.addWidget(self.ButtonBrowseIm, 1, 1, 1, 1)
+        self.label = QtWidgets.QLabel(FenImageHyper)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.label_2 = QtWidgets.QLabel(FenImageHyper)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
+        self.ButtonBrowseLib = QtWidgets.QPushButton(FenImageHyper)
+        self.ButtonBrowseLib.setObjectName("ButtonBrowseLib")
+        self.gridLayout.addWidget(self.ButtonBrowseLib, 3, 1, 1, 1)
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.gridLayout.addItem(spacerItem, 4, 0, 1, 1)
+        self.horizontalLayout_2.addLayout(self.gridLayout)
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.formLayout = QtWidgets.QFormLayout()
+        self.formLayout.setObjectName("formLayout")
+        self.iterationsLabel = QtWidgets.QLabel(FenImageHyper)
+        self.iterationsLabel.setObjectName("iterationsLabel")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.iterationsLabel)
+        self.iterationsSpinBox = QtWidgets.QSpinBox(FenImageHyper)
+        self.iterationsSpinBox.setMinimum(100)
+        self.iterationsSpinBox.setMaximum(32768)
+        self.iterationsSpinBox.setObjectName("iterationsSpinBox")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.iterationsSpinBox)
+        self.burnInLabel = QtWidgets.QLabel(FenImageHyper)
+        self.burnInLabel.setObjectName("burnInLabel")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.burnInLabel)
+        self.burnInSpinBox = QtWidgets.QSpinBox(FenImageHyper)
+        self.burnInSpinBox.setObjectName("burnInSpinBox")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.burnInSpinBox)
+        self.verticalLayout.addLayout(self.formLayout)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.ButtonUnmix = QtWidgets.QPushButton(FenImageHyper)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.ButtonUnmix.sizePolicy().hasHeightForWidth())
+        self.ButtonUnmix.setSizePolicy(sizePolicy)
+        self.ButtonUnmix.setObjectName("ButtonUnmix")
+        self.verticalLayout_2.addWidget(self.ButtonUnmix)
+        self.verticalLayout.addLayout(self.verticalLayout_2)
+        self.horizontalLayout_2.addLayout(self.verticalLayout)
+
+        self.retranslateUi(FenImageHyper)
+        QtCore.QMetaObject.connectSlotsByName(FenImageHyper)
+
+    def retranslateUi(self, FenImageHyper):
+        _translate = QtCore.QCoreApplication.translate
+        FenImageHyper.setWindowTitle(_translate("FenImageHyper", "Form"))
+        self.ButtonBrowseIm.setText(_translate("FenImageHyper", "Browse..."))
+        self.label.setText(_translate("FenImageHyper", "Select image data file (.npy):"))
+        self.label_2.setText(_translate("FenImageHyper", "Select spectral library file (.npy):"))
+        self.ButtonBrowseLib.setText(_translate("FenImageHyper", "Browse..."))
+        self.iterationsLabel.setText(_translate("FenImageHyper", "Iterations"))
+        self.burnInLabel.setText(_translate("FenImageHyper", "BurnIn"))
+        self.ButtonUnmix.setText(_translate("FenImageHyper", "Unmix !"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    FenImageHyper = QtWidgets.QWidget()
+    ui = Ui_FenImageHyper()
+    ui.setupUi(FenImageHyper)
+    FenImageHyper.show()
+    sys.exit(app.exec_())
