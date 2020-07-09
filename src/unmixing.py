@@ -53,7 +53,6 @@ def unmixPixel(imagePixel, chainLength):
 
         abundanceSamples, rhoSamples = sampleAbund.generateSamples(abundanceSamples, sigma2rSamples, rhoSamples,
          							imagePixel.SpectralValues, imagePixel.EndmembersMatrix, m_compt)
-        #abundanceSamples.CurrentSamples = np.array([[0.3], [0.7]])
         TAlphaPlus.FillIn(abundanceSamples, m_compt)
         TRho.FillIn(rhoSamples, m_compt)
 
