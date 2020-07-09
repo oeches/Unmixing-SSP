@@ -147,7 +147,8 @@ class MwG_abundances(MetropolisWithinGibbs):
                 #alpha_star = np.asscalar(alpha) # deprecated
                 alpha_star = alpha.item()
                 
-                mu_alpha = spectra.dot(samplesAb.CurrentSamples)
+                mu_alpha = spectra[:,0:(samplesAb.dimension-1)].dot(samplesAb.CurrentSamples[0:(samplesAb.dimension-1)]) \
+                +spectra[:,[samplesAb.dimension-1]].dot(1-np.sum(samplesAb.CurrentSamples[0:(samplesAb.dimension-1)]))
                 C_alpha = samplesSig.CurrentSamples[:,0:(samplesAb.dimension-1)].dot(np.square(samplesAb.CurrentSamples[0:(samplesAb.dimension-1)])) \
                 + samplesSig.CurrentSamples[:,samplesAb.dimension-1].dot(np.square(1 - np.sum(samplesAb.CurrentSamples[0:(samplesAb.dimension-1)])))
                 mu_alpha_star = spectra[:,[k]]*alpha_star + spectra_k.dot(alpha_k) \
@@ -172,7 +173,7 @@ class MwG_abundances(MetropolisWithinGibbs):
 
         samplesAb.PreviousSamples = samplesAb.CurrentSamples
         samplesAb.CurrentSamples[firstAb] = 1 - np.sum(samplesAb.CurrentSamples[listAb])
-        samplesRho.PreviousSamples = samplesAb.CurrentSamples
+        samplesRho.PreviousSamples = samplesRho.CurrentSamples
         rho[:,firstAb] = 0
         samplesRho.CurrentSamples = rho
 
