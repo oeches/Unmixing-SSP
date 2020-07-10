@@ -108,6 +108,7 @@ class PixelSynth:
         self.Abundances = np.zeros((self.EndmembersNumber,1))
         self.EndmembersMatrix = np.zeros((1,self.EndmembersNumber))
         self.Wavelength = np.zeros((1))
+        self.WavelengthRed = np.zeros((1))
         self.SpectralLibrary = np.zeros((1,1))
         self.SpectralValues = np.zeros((1,1))
 
@@ -151,7 +152,7 @@ class PixelSynth:
 
         indexEndmChosen = range(self.EndmembersNumber)
         self.EndmembersMatrix = self.SpectralLibrary[0:-1:samplingStep, indexEndmChosen]
-        self.Wavelength = self.Wavelength[0:-1:samplingStep] 
+        self.WavelengthRed = self.Wavelength[0:-1:samplingStep] 
 
         # generating the pixel from a multivariate gaussian distribution
         # covariance matrix = size of number of bands
